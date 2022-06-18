@@ -1,0 +1,12 @@
+{
+  "name": "keylimepie.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./keylimepie.js",
+  "scripts": {
+    "test": "node tests/tests.js",
+	"build": "minify keylimepie.js > keylimepie.min.js"
+  },
+  "author": "infinixius",
+  "license": "MIT"
+}
