@@ -1,5 +1,5 @@
 /*
-	keylimepie v1.0.0 - a javascript utility library
+	keylimepie v1.1.0 - a javascript utility library
 	made with <3 by https://infinixi.us
 
 	https://files.infinixi.us/keylimepie.js
@@ -16,7 +16,7 @@ var Lime = {
 		Utility: {}
 	},
 	platform: "",
-	version: "1.0.0"
+	version: "1.1.0"
 }
 
 /* Setup */
@@ -26,6 +26,7 @@ try { if (process) Lime.platform = "node"; Lime.context = global } catch (err) {
 try { if (globalThis) Lime.context = globalThis} catch (err) {}
 
 if (Object.defineProperty) Lime.features.push("Object.defineProperty")
+try { if (process) Lime.features.push("process") } catch (err) {}
 
 /**
  * Adds a new property to a method.
@@ -136,7 +137,7 @@ Lime.modules.Logger.init = function(fileStream) {
 Lime.modules.Logger.log = function(type, message) {
 	if (Lime.platform == "node") {
 		if (Lime.modules.Logger.config.fileStream) Lime.modules.Logger.config.fileStream.write(Lime.modules.Logger.config.format(type, message, false) + Lime.modules.Logger.config.newline.file)
-		process.stdout.write(Lime.modules.Logger.config.format(type, message, true) + Lime.modules.Logger.config.newline.stdout)
+		if (Lime.modules.Logger.config.types[type].stdout) process.stdout.write(Lime.modules.Logger.config.format(type, message, true) + Lime.modules.Logger.config.newline.stdout)
 	}
 }
 
